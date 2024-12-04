@@ -1,8 +1,8 @@
-export const formatNumber = (number, decimals = 2) => {
-  if (typeof number !== 'number' || isNaN(number)) return '0.00';
+export const formatearNumero = (numero, decimales = 2) => {
+  if (typeof numero !== 'number' || isNaN(numero)) return '0,00';
   
   return new Intl.NumberFormat('es-CO', {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  }).format(number);
+    minimumFractionDigits: decimales,
+    maximumFractionDigits: decimales,
+  }).format(numero);
 };
