@@ -1,65 +1,65 @@
 import { useState, useEffect } from 'react';
-import InputField from './components/InputField';
-import ResultDisplay from './components/ResultDisplay';
+import CampoEntrada from './components/InputField';
+import MostrarResultado from './components/ResultDisplay';
 import {
-  calculateFOBUnit,
-  calculatePriceDifference,
-  calculateAdjustmentValue,
-  calculateTariff,
-  calculateIVA,
-  calculateTotalAdjustment
+  calcularFOBUnitario,
+  calcularDiferenciaPrecio,
+  calcularValorAjuste,
+  calcularArancel,
+  calcularIVA,
+  calcularAjusteTotal
 } from './utils/calculations';
 
 function App() {
-  const [values, setValues] = useState({
-    fobValue: '',
-    quantity: '',
-    referencePrice: '',
-    tariffPercentage: '',
-    exchangeRate: '',
-    ivaPercentage: ''
+  const [valores, setValores] = useState({
+    valorFOB: '',
+    cantidad: '',
+    precioReferencia: '',
+    porcentajeArancel: '',
+    tasaCambio: '',
+    porcentajeIVA: ''
   });
 
-  const [results, setResults] = useState({
-    fobUnit: 0,
-    difference: 0,
-    adjustmentValue: 0,
-    tariff: 0,
+  const [resultados, setResultados] = useState({
+    fobUnitario: 0,
+    diferencia: 0,
+    valorAjuste: 0,
+    arancel: 0,
     iva: 0,
-    totalAdjustment: 0
+    ajusteTotal: 0
   });
 
   useEffect(() => {
-    const fobUnit = calculateFOBUnit(Number(values.fobValue), Number(values.quantity));
-    const difference = calculatePriceDifference(Number(values.referencePrice), fobUnit);
-    const adjustmentValue = calculateAdjustmentValue(difference, Number(values.quantity));
-    const tariff = calculateTariff(
-      adjustmentValue,
-      Number(values.tariffPercentage),
-      Number(values.exchangeRate)
+    const fobUnitario = calcularFOBUnitario(Number(valores.valorFOB), Number(valores.cantidad));
+    const diferencia = calcularDiferenciaPrecio(Number(valores.precioReferencia), fobUnitario);
+    const valorAjuste = calcularValorAjuste(diferencia, Number(valores.cantidad));
+    const arancel = calcularArancel(
+      valorAjuste,
+      Number(valores.porcentajeArancel),
+      Number(valores.tasaCambio)
     );
-    const iva = calculateIVA(
-      adjustmentValue,
-      tariff,
-      Number(values.ivaPercentage),
-      Number(values.exchangeRate)
+    const iva = calcularIVA(
+      valorAjuste,
+      arancel,
+      Number(valores.porcentajeIVA),
+      Number(valores.tasaCambio)
     );
-    const totalAdjustment = calculateTotalAdjustment(tariff, iva);
+    const ajusteTotal = calcularAjusteTotal(arancel, iva);
 
-    setResults({
-      fobUnit,
-      difference,
-      adjustmentValue,
-      tariff,
+    setResultados({
+      fobUnitario,
+      diferencia,
+      valorAjuste,
+      arancel,
       iva,
-      totalAdjustment
+      ajusteTotal
     });
-  }, [values]);
+  }, [valores]);
 
-  const handleInputChange = (field, value) => {
-    setValues(prev => ({
-      ...prev,
-      [field]: value
+  const manejarCambioEntrada = (campo, valor) => {
+    setValores(previo => ({
+      ...previo,
+      [campo]: valor
     }));
   };
 
@@ -77,65 +77,65 @@ function App() {
 
         <div className="bg-white shadow rounded-lg p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputField
-              label="Valor FOB"
-              value={values.fobValue}
-              onChange={(value) => handleInputChange('fobValue', value)}
+            <CampoEntrada
+              etiqueta="Valor FOB"
+              valor={valores.valorFOB}
+              onChange={(valor) => manejarCambioEntrada('valorFOB', valor)}
             />
-            <InputField
-              label="Cantidad/Peso Neto"
-              value={values.quantity}
-              onChange={(value) => handleInputChange('quantity', value)}
+            <CampoEntrada
+              etiqueta="Cantidad/Peso Neto"
+              valor={valores.cantidad}
+              onChange={(valor) => manejarCambioEntrada('cantidad', valor)}
             />
-            <InputField
-              label="Precio de Referencia"
-              value={values.referencePrice}
-              onChange={(value) => handleInputChange('referencePrice', value)}
+            <CampoEntrada
+              etiqueta="Precio de Referencia"
+              valor={valores.precioReferencia}
+              onChange={(valor) => manejarCambioEntrada('precioReferencia', valor)}
             />
-            <InputField
-              label="Porcentaje de Arancel"
-              value={values.tariffPercentage}
-              onChange={(value) => handleInputChange('tariffPercentage', value)}
+            <CampoEntrada
+              etiqueta="Porcentaje de Arancel"
+              valor={valores.porcentajeArancel}
+              onChange={(valor) => manejarCambioEntrada('porcentajeArancel', valor)}
             />
-            <InputField
-              label="Tasa de Cambio"
-              value={values.exchangeRate}
-              onChange={(value) => handleInputChange('exchangeRate', value)}
+            <CampoEntrada
+              etiqueta="Tasa de Cambio"
+              valor={valores.tasaCambio}
+              onChange={(valor) => manejarCambioEntrada('tasaCambio', valor)}
             />
-            <InputField
-              label="Porcentaje de IVA"
-              value={values.ivaPercentage}
-              onChange={(value) => handleInputChange('ivaPercentage', value)}
+            <CampoEntrada
+              etiqueta="Porcentaje de IVA"
+              valor={valores.porcentajeIVA}
+              onChange={(valor) => manejarCambioEntrada('porcentajeIVA', valor)}
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <ResultDisplay
-            label="FOB Unitario"
-            value={results.fobUnit}
-            decimals={4}
+          <MostrarResultado
+            etiqueta="FOB Unitario"
+            valor={resultados.fobUnitario}
+            decimales={4}
           />
-          <ResultDisplay
-            label="Estado del Valor"
-            value={results.difference <= 0 ? "El valor pagado es correcto" : "Se debe realizar ajuste"}
-            status={results.difference <= 0 ? "success" : "error"}
+          <MostrarResultado
+            etiqueta="Estado del Valor"
+            valor={resultados.diferencia <= 0 ? "El valor pagado es correcto" : "Se debe realizar ajuste"}
+            estado={resultados.diferencia <= 0 ? "exito" : "error"}
           />
-          <ResultDisplay
-            label="Valor de Ajuste"
-            value={results.adjustmentValue}
+          <MostrarResultado
+            etiqueta="Valor de Ajuste"
+            valor={resultados.valorAjuste}
           />
-          <ResultDisplay
-            label="Arancel"
-            value={results.tariff}
+          <MostrarResultado
+            etiqueta="Arancel"
+            valor={resultados.arancel}
           />
-          <ResultDisplay
-            label="IVA"
-            value={results.iva}
+          <MostrarResultado
+            etiqueta="IVA"
+            valor={resultados.iva}
           />
-          <ResultDisplay
-            label="Total Ajuste (Arancel + IVA)"
-            value={results.totalAdjustment}
+          <MostrarResultado
+            etiqueta="Total Ajuste (Arancel + IVA)"
+            valor={resultados.ajusteTotal}
           />
         </div>
       </div>
