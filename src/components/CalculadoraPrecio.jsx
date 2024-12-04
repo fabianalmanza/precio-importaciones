@@ -83,7 +83,7 @@ export default function CalculadoraPrecio() {
             onChange={(valor) => manejarCambioEntrada('precioReferencia', valor)}
           />
           <CampoEntrada
-            etiqueta="Porcentaje de Arancel (solo numeros enteros ejm: 10)"
+            etiqueta="Porcentaje de Arancel (solo numeros no caracteres ejm: 10)"
             valor={valores.porcentajeArancel}
             onChange={(valor) => manejarCambioEntrada('porcentajeArancel', valor)}
           />
@@ -93,7 +93,7 @@ export default function CalculadoraPrecio() {
             onChange={(valor) => manejarCambioEntrada('tasaCambio', valor)}
           />
           <CampoEntrada
-            etiqueta="Porcentaje de IVA (solo numeros enteros ejm: 19)"
+            etiqueta="Porcentaje de IVA (solo numeros no caracteres ejm: 19)"
             valor={valores.porcentajeIVA}
             onChange={(valor) => manejarCambioEntrada('porcentajeIVA', valor)}
           />
