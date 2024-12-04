@@ -78,22 +78,22 @@ export default function CalculadoraPrecio() {
             onChange={(valor) => manejarCambioEntrada('cantidad', valor)}
           />
           <CampoEntrada
-            etiqueta="Precio de Referencia"
+            etiqueta="Precio de Referencia ejm: 4.13"
             valor={valores.precioReferencia}
             onChange={(valor) => manejarCambioEntrada('precioReferencia', valor)}
           />
           <CampoEntrada
-            etiqueta="Porcentaje de Arancel"
+            etiqueta="Porcentaje de Arancel (solo numeros enteros ejm: 10)"
             valor={valores.porcentajeArancel}
             onChange={(valor) => manejarCambioEntrada('porcentajeArancel', valor)}
           />
           <CampoEntrada
-            etiqueta="Tasa de Cambio"
+            etiqueta="Tasa de Cambio (USD/COP) ejm: 4430.09"
             valor={valores.tasaCambio}
             onChange={(valor) => manejarCambioEntrada('tasaCambio', valor)}
           />
           <CampoEntrada
-            etiqueta="Porcentaje de IVA"
+            etiqueta="Porcentaje de IVA (solo numeros enteros ejm: 19)"
             valor={valores.porcentajeIVA}
             onChange={(valor) => manejarCambioEntrada('porcentajeIVA', valor)}
           />
