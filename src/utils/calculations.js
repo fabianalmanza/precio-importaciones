@@ -1,29 +1,29 @@
-export const calculateFOBUnit = (fobValue, quantity) => {
-  if (!fobValue || !quantity) return 0;
-  return fobValue / quantity;
+export const calcularFOBUnitario = (valorFOB, cantidad) => {
+  if (!valorFOB || !cantidad) return 0;
+  return valorFOB / cantidad;
 };
 
-export const calculatePriceDifference = (referencePrice, fobUnit) => {
-  if (!referencePrice || !fobUnit) return 0;
-  return referencePrice - fobUnit;
+export const calcularDiferenciaPrecio = (precioReferencia, fobUnitario) => {
+  if (!precioReferencia || !fobUnitario) return 0;
+  return precioReferencia - fobUnitario;
 };
 
-export const calculateAdjustmentValue = (difference, quantity) => {
-  if (!difference || !quantity) return 0;
-  return difference * quantity;
+export const calcularValorAjuste = (diferencia, cantidad) => {
+  if (!diferencia || !cantidad) return 0;
+  return diferencia * cantidad;
 };
 
-export const calculateTariff = (adjustmentValue, tariffPercentage, exchangeRate) => {
-  if (!adjustmentValue || !tariffPercentage || !exchangeRate) return 0;
-  return adjustmentValue * (tariffPercentage / 100) * exchangeRate;
+export const calcularArancel = (valorAjuste, porcentajeArancel, tasaCambio) => {
+  if (!valorAjuste || !porcentajeArancel || !tasaCambio) return 0;
+  return valorAjuste * (porcentajeArancel / 100) * tasaCambio;
 };
 
-export const calculateIVA = (adjustmentValue, tariff, ivaPercentage, exchangeRate) => {
-  if (!adjustmentValue || !tariff || !ivaPercentage || !exchangeRate) return 0;
-  return (adjustmentValue * exchangeRate + tariff) * (ivaPercentage / 100);
+export const calcularIVA = (valorAjuste, arancel, porcentajeIVA, tasaCambio) => {
+  if (!valorAjuste || !arancel || !porcentajeIVA || !tasaCambio) return 0;
+  return (valorAjuste * tasaCambio + arancel) * (porcentajeIVA / 100);
 };
 
-export const calculateTotalAdjustment = (tariff, iva) => {
-  if (!tariff || !iva) return 0;
-  return tariff + iva;
+export const calcularAjusteTotal = (arancel, iva) => {
+  if (!arancel || !iva) return 0;
+  return arancel + iva;
 };
