@@ -65,8 +65,9 @@ export default function CalculadoraPrecio() {
 
   return (
     <div>
-      <div className="bg-white shadow rounded-lg p-6 mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white shadow rounded-lg p-2 sm:p-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <h3 className="text-lg font-semibold mb-2">Calculadora de Precio de referencia</h3>
           <CampoEntrada
             etiqueta="Valor FOB"
             valor={valores.valorFOB}
@@ -100,7 +101,7 @@ export default function CalculadoraPrecio() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <MostrarResultado
           etiqueta="FOB Unitario"
           valor={resultados.fobUnitario}
