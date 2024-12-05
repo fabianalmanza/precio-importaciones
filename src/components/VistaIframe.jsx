@@ -37,7 +37,7 @@ export default function VistaIframe({ url, titulo, onLoad }) {
               transform: window.innerWidth < 500 ? 'scale(0.5)' : 'none',
               height: window.innerWidth < 500 ? '200%' : '100%'
             }}
-            sandbox="allow-same-origin allow-scripts allow-forms"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation"
             onLoad={handleLoad}
           />
         </div>
