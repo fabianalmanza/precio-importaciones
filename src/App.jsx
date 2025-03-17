@@ -24,7 +24,9 @@ function App() {
   ), [vistaActual]);
 
   useEffect(() => {
+    
     // Precarga el iframe cuando la aplicación se inicia
+
     if (!iframeLoaded) {
       const preloadIframe = document.createElement('iframe');
       preloadIframe.src = "https://muisca.dian.gov.co/WebArancel/DefConsultaNomenclaturaPorCodigo.faces";
