@@ -6,6 +6,7 @@ import VistaIframe from './components/VistaIframe';
 import TablaMunicipios from './components/TablaMunicipios';
 import TablaPaises from './components/TablaPaises';
 import TablaUsuariosAduaneros from './components/TablaUsuariosAduaneros';
+import VistaAnticipadas from './components/VistaAnticipadas';
 import { IframeProvider } from './context/IframeContext';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 
   const iframeArancel = useMemo(() => (
     <div style={{ display: vistaActual === 'arancel' ? 'block' : 'none' }}>
-      <VistaIframe 
+      <VistaIframe
         url="https://muisca.dian.gov.co/WebArancel/DefConsultaNomenclaturaPorCodigo.faces"
         titulo="Consulta Arancel"
         onLoad={() => setIframeLoaded(true)}
@@ -46,6 +47,8 @@ function App() {
         return <TablaPaises />;
       case 'usuarios':
         return <TablaUsuariosAduaneros />;
+      case 'anticipadas':
+        return <VistaAnticipadas />;
       default:
         return <CalculadoraPrecio />;
     }
